@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:penjor_driver/order/listOrder.dart';
+import 'package:penjor_driver/landingpage/v_landingpage.dart';
 import 'package:android_intent/android_intent.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:convert';
@@ -86,7 +86,7 @@ class _OrderDetailState extends State<OrderDetail> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ListOrder()));
+                                  builder: (context) => LandingPage()));
                         },
                         child: ClipOval(
                           child: SizedBox(
@@ -510,6 +510,11 @@ class _OrderDetailState extends State<OrderDetail> {
                                       GestureDetector(
                                         onTap: () {
                                           _diTerima();
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      LandingPage()));
                                         },
                                         child: Padding(
                                           padding: const EdgeInsets.only(

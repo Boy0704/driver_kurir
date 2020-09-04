@@ -130,7 +130,7 @@ class _LandingPageState extends State<LandingPage> {
             color: Colors.grey,
           ),
           title: new Text(
-            'Pesanan',
+            'Order Masuk',
             style: TextStyle(color: GojekPalette.menuRide),
           ),
         ),

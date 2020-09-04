@@ -331,7 +331,7 @@ class _ListOrderState extends State<ListOrder> {
                                                 color: Colors.pink),
                                             child: Center(
                                               child: Text(
-                                                "Lihat",
+                                                "${dataList[index]['status']}",
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.bold,
