@@ -1,0 +1,127 @@
+{
+  "project_info": {
+    "project_number": "647005780776",
+    "firebase_url": "https://flutter-crud-f448c.firebaseio.com",
+    "project_id": "flutter-crud-f448c",
+    "storage_bucket": "flutter-crud-f448c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647005780776:android:0763e0380d5835cf722e1d",
+        "android_client_info": {
+          "package_name": "com.jualkoding.crud_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "647005780776-capdmo8kaf5aisshg1reece64sh9qvmj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBV3u8khQaAaXs5uVqiwdAiRmohVpGs-FI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "647005780776-capdmo8kaf5aisshg1reece64sh9qvmj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647005780776:android:ac5fbb64b1d97978722e1d",
+        "android_client_info": {
+          "package_name": "com.jualkoding.penjor_customer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "647005780776-capdmo8kaf5aisshg1reece64sh9qvmj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBV3u8khQaAaXs5uVqiwdAiRmohVpGs-FI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "647005780776-capdmo8kaf5aisshg1reece64sh9qvmj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647005780776:android:77b8f00ee0582b70722e1d",
+        "android_client_info": {
+          "package_name": "com.jualkoding.penjor_driver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "647005780776-capdmo8kaf5aisshg1reece64sh9qvmj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBV3u8khQaAaXs5uVqiwdAiRmohVpGs-FI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "647005780776-capdmo8kaf5aisshg1reece64sh9qvmj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647005780776:android:b8e2d4adc4c2c71b722e1d",
+        "android_client_info": {
+          "package_name": "io.fireship.lessonapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "647005780776-capdmo8kaf5aisshg1reece64sh9qvmj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBV3u8khQaAaXs5uVqiwdAiRmohVpGs-FI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "647005780776-capdmo8kaf5aisshg1reece64sh9qvmj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

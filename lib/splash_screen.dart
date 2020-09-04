@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:penjor_driver/landingpage/v_landingpage.dart';
 import 'dart:async';
 // import 'dashboard/home_page.dart';
 import 'login/LoginPage.dart';
@@ -37,7 +38,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
             context, MaterialPageRoute(builder: (context) => LoginPage()));
       } else {
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => null));
+            context, MaterialPageRoute(builder: (context) => LandingPage()));
       }
 
       // Navigator.of(context).pushReplacement(

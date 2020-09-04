@@ -1,8 +1,90 @@
 import 'package:flutter/material.dart';
 import 'package:penjor_driver/Animations/animation.dart';
 import 'package:penjor_driver/landingpage/v_landingpage.dart';
+import '../helper.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import '../secrets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  FirebaseMessaging fm = FirebaseMessaging();
+  final TextEditingController _usernameControl = new TextEditingController();
+  final TextEditingController _passwordControl = new TextEditingController();
+  final Helper helper = new Helper();
+
+  String tokenFcm = "";
+
+  _LoginPageState() {
+    fm.getToken().then((value) => tokenFcm = value);
+    fm.configure();
+  }
+
+  _prosesLogin() async {
+    final response = await http.post(Secrets.BASE_URL + "login", body: {
+      "username": _usernameControl.text,
+      "password": _passwordControl.text,
+      "level": "driver",
+      "token_fcm": tokenFcm
+    });
+    final data = jsonDecode(response.body);
+
+    print("hasil nya : $data");
+
+    String value = data['status'];
+    String pesan = data['pesan'];
+    String noTelp = data['no_telp'];
+    String level = data['level'];
+    String idUser = data['id_user'];
+    String password = data['password'];
+    String nama = data['nama'];
+    String email = data['email'];
+
+    if (value == "1") {
+      setState(() {
+        savePref(noTelp, level, idUser, nama, password, email);
+      });
+      print(pesan);
+      helper.alertLog(pesan);
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => LandingPage()));
+    } else {
+      print(pesan);
+      helper.alertLog(pesan);
+    }
+  }
+
+  savePref(String username, String level, String idUser, String nama,
+      String password, String email) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      preferences.setString("level", level);
+      preferences.setString("username", username);
+      preferences.setString("id_user", idUser);
+      preferences.setString("nama", nama);
+      preferences.setString("password", password);
+      preferences.setString("email", email);
+    });
+  }
+
+  logOut() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      preferences.remove("level");
+      preferences.remove("username");
+      preferences.remove("id_user");
+      preferences.remove("nama");
+      preferences.remove("password");
+      preferences.remove("email");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,6 +221,7 @@ class LoginPage extends StatelessWidget {
                                           bottom: BorderSide(
                                               color: Colors.grey[100]))),
                                   child: TextField(
+                                    controller: _usernameControl,
                                     decoration: InputDecoration(
                                         border: InputBorder.none,
                                         hintText: "Username",
@@ -149,6 +232,7 @@ class LoginPage extends StatelessWidget {
                                 Container(
                                   padding: EdgeInsets.all(8.0),
                                   child: TextField(
+                                    controller: _passwordControl,
                                     obscureText: true,
                                     decoration: InputDecoration(
                                         border: InputBorder.none,
@@ -167,10 +251,7 @@ class LoginPage extends StatelessWidget {
                           2,
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LandingPage()));
+                              _prosesLogin();
                             },
                             child: Container(
                               height: 50,
