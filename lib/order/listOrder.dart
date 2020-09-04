@@ -113,7 +113,7 @@ class _ListOrderState extends State<ListOrder> {
                 // awal card 1
                 Padding(
                     padding: const EdgeInsets.only(
-                      top: 15.0,
+                      top: 10.0,
                       left: 8.0,
                       right: 8.0,
                     ),
@@ -123,6 +123,7 @@ class _ListOrderState extends State<ListOrder> {
                             scrollDirection: Axis.vertical,
                             shrinkWrap: true,
                             itemCount: dataList.length,
+                            physics: NeverScrollableScrollPhysics(),
                             itemBuilder: (BuildContext context, int index) {
                               return Card(
                                 elevation: 2,

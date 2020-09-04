@@ -153,7 +153,6 @@ class _OrderDetailState extends State<OrderDetail> {
                       elevation: 2,
                       child: ClipPath(
                         child: Container(
-                          height: MediaQuery.of(context).size.height - 100,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20.0),
                           ),
@@ -512,25 +511,30 @@ class _OrderDetailState extends State<OrderDetail> {
                                         onTap: () {
                                           _diTerima();
                                         },
-                                        child: Container(
-                                          height: 50,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width -
-                                              50,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                10.0,
-                                              ),
-                                              color: Colors.green),
-                                          child: Center(
-                                            child: Text(
-                                              "Barang telah diterima",
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 15.0,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                            bottom: 8.0,
+                                          ),
+                                          child: Container(
+                                            height: 50,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width -
+                                                50,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                  10.0,
+                                                ),
+                                                color: Colors.green),
+                                            child: Center(
+                                              child: Text(
+                                                "Barang telah diterima",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 15.0,
+                                                ),
                                               ),
                                             ),
                                           ),
