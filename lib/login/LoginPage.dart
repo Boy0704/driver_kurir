@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:penjor_driver/Animations/animation.dart';
+import 'package:penjor_driver/daftar/daftarPage.dart';
 import 'package:penjor_driver/landingpage/v_landingpage.dart';
 import '../helper.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -272,7 +273,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           )),
                       SizedBox(
-                        height: 70,
+                        height: 20,
                       ),
                       FadeAnimation(
                           1.5,
@@ -280,6 +281,23 @@ class _LoginPageState extends State<LoginPage> {
                             "Forgot Password?",
                             style: TextStyle(
                                 color: Color.fromRGBO(143, 148, 251, 1)),
+                          )),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      FadeAnimation(
+                          1.5,
+                          InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (_) => DaftarPage()));
+                            },
+                            child: Text(
+                              "Daftar Sekarang",
+                              style: TextStyle(
+                                  color: Colors.green, fontSize: 20.0),
+                            ),
                           )),
                     ],
                   ),
