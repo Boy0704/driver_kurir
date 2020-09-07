@@ -67,9 +67,11 @@ class _HomePageState extends State<HomePage> {
       print("Lokasi lat : ${cLoc.latitude}");
       print("Lokasi Lng : ${cLoc.longitude}");
       _updateDriver(cLoc.latitude.toString(), cLoc.longitude.toString());
-      currentLocation = cLoc;
+      setState(() {
+        currentLocation = cLoc;
+      });
       setCustomMapPin();
-      Marker startMarker = Marker(
+      _markers.add(Marker(
         markerId: MarkerId('lokasi_driver'),
         position: LatLng(
           cLoc.latitude,
@@ -80,8 +82,8 @@ class _HomePageState extends State<HomePage> {
           snippet: "lokasi saya",
         ),
         icon: pinLocationIcon,
-      );
-      // updatePinOnMap();
+      ));
+      updatePinOnMap();
     });
     // set custom marker pins
     // setSourceAndDestinationIcons();
@@ -91,7 +93,7 @@ class _HomePageState extends State<HomePage> {
 
   void setCustomMapPin() async {
     pinLocationIcon = await BitmapDescriptor.fromAssetImage(
-        ImageConfiguration(devicePixelRatio: 2.5),
+        ImageConfiguration(devicePixelRatio: 5.0),
         'assets/images/ic_marker_32.png');
   }
 
