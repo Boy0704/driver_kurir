@@ -328,7 +328,7 @@ class _ListOrderState extends State<ListOrder> {
                                                     BorderRadius.circular(
                                                   10.0,
                                                 ),
-                                                color: Colors.pink),
+                                                color: dataList[index]['status'] == "Selesai" ? Colors.green : Colors.pink),
                                             child: Center(
                                               child: Text(
                                                 "${dataList[index]['status']}",

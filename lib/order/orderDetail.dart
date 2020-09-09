@@ -11,6 +11,8 @@ class OrderDetail extends StatefulWidget {
   List list;
   int index;
 
+  
+
   OrderDetail({this.list, this.index});
 
   @override
@@ -18,6 +20,42 @@ class OrderDetail extends StatefulWidget {
 }
 
 class _OrderDetailState extends State<OrderDetail> {
+
+  bool btnJemput = false;
+  bool btnAntar = false;
+  bool btnSelesai = false;
+  bool statusSelesai = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if(widget.list[widget.index]['status'] == 'Open') {
+      setState(() {
+        btnJemput = true;
+        btnAntar = false;
+        btnSelesai= false;
+        statusSelesai = false;
+      });
+    } else if (widget.list[widget.index]['status'] == 'Sedang Menjemput') {
+      setState(() {
+        btnJemput = false;
+        btnAntar = true;
+        btnSelesai= false;
+        statusSelesai = false;
+        statusSelesai = false;
+      });
+    } else if (widget.list[widget.index]['status'] == 'Delivery') {
+      setState(() {
+        btnJemput = false;
+        btnAntar = false;
+        btnSelesai= true;
+        statusSelesai = false;
+      });
+    } else {
+      statusSelesai = true;
+    }
+  }
+
   void _launchTurnByTurnNavigationInGoogleMaps(String tujuan) {
     final AndroidIntent intent = AndroidIntent(
         action: 'action_view',
@@ -27,6 +65,12 @@ class _OrderDetailState extends State<OrderDetail> {
   }
 
   void _diJemput() async {
+    setState(() {
+      btnJemput = false;
+      btnAntar = true;
+      btnSelesai= false;
+      statusSelesai = false;
+    });
     final response = await http.post(Secrets.BASE_URL + "dijemput",
         body: {"id_order": widget.list[widget.index]['id_order']});
     final data = jsonDecode(response.body);
@@ -40,6 +84,16 @@ class _OrderDetailState extends State<OrderDetail> {
   }
 
   void _diAntar() async {
+    setState(() {
+      btnJemput = false;
+      btnAntar = false;
+      btnSelesai= true;
+      statusSelesai = false;
+    });
+    print("btnJemput : $btnJemput");
+    print("btnAntar : $btnAntar");
+    print("btnSelesai : $btnSelesai");
+    print("statusSelesai : $statusSelesai");
     final response = await http.post(Secrets.BASE_URL + "diantar",
         body: {"id_order": widget.list[widget.index]['id_order']});
     final data = jsonDecode(response.body);
@@ -53,6 +107,12 @@ class _OrderDetailState extends State<OrderDetail> {
   }
 
   void _diTerima() async {
+    setState(() {
+      btnJemput = false;
+      btnAntar = false;
+      btnSelesai= false;
+      statusSelesai = true;
+    });
     final response = await http.post(Secrets.BASE_URL + "order_selesai",
         body: {"id_order": widget.list[widget.index]['id_order']});
     final data = jsonDecode(response.body);
@@ -352,7 +412,7 @@ class _OrderDetailState extends State<OrderDetail> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Divider(),
-                                GestureDetector(
+                                btnJemput ? GestureDetector(
                                   onTap: () {
                                     _diJemput();
                                     _launchTurnByTurnNavigationInGoogleMaps(
@@ -378,9 +438,9 @@ class _OrderDetailState extends State<OrderDetail> {
                                       ),
                                     ),
                                   ),
-                                ),
+                                ) : Text(""),
                                 Divider(),
-                                GestureDetector(
+                                btnAntar ? GestureDetector(
                                   onTap: () {
                                     _diAntar();
                                     _launchTurnByTurnNavigationInGoogleMaps(
@@ -406,9 +466,9 @@ class _OrderDetailState extends State<OrderDetail> {
                                       ),
                                     ),
                                   ),
-                                ),
+                                ) : Text(""),
                                 Divider(),
-                                GestureDetector(
+                                btnSelesai ? GestureDetector(
                                   onTap: () {
                                     _diTerima();
                                     Navigator.push(
@@ -442,7 +502,12 @@ class _OrderDetailState extends State<OrderDetail> {
                                       ),
                                     ),
                                   ),
-                                )
+                                ) : Text(""),
+                                statusSelesai ? Text("SELESAI", style: TextStyle(
+                                            color: Colors.green,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15.0,
+                                          )) : Text("") 
                               ],
                             )
                           ],

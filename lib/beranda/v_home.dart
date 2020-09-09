@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
       print("INI LOKASI DRIVER: $cLoc");
       print("Lokasi lat : ${cLoc.latitude}");
       print("Lokasi Lng : ${cLoc.longitude}");
-      _updateDriver(cLoc.latitude.toString(), cLoc.longitude.toString());
+      _updateDriver(cLoc.latitude.toString(), cLoc.longitude.toString(), cLoc.heading.toString());
       setState(() {
         currentLocation = cLoc;
       });
@@ -77,6 +77,7 @@ class _HomePageState extends State<HomePage> {
           cLoc.latitude,
           cLoc.longitude,
         ),
+        rotation: cLoc.heading,
         infoWindow: InfoWindow(
           title: 'Lokasi saya',
           snippet: "lokasi saya",
@@ -94,14 +95,14 @@ class _HomePageState extends State<HomePage> {
   void setCustomMapPin() async {
     pinLocationIcon = await BitmapDescriptor.fromAssetImage(
         ImageConfiguration(devicePixelRatio: 5.0),
-        'assets/images/ic_marker_32.png');
+        'assets/images/logo_motor.png');
   }
 
-  void _updateDriver(String lat, String lng) async {
+  void _updateDriver(String lat, String lng, String heading) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     var idUser = sharedPreferences.get("id_user");
     final response = await http.post(Secrets.BASE_URL + "update_lokasi_driver",
-        body: {"lat": lat, "lng": lng, "id_user": idUser});
+        body: {"lat": lat, "lng": lng, "bearing": heading, "id_user": idUser});
     final data = jsonDecode(response.body);
     print("post data : $lat $lng");
     print("hasil nya : $data");
