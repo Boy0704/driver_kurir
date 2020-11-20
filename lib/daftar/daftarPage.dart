@@ -7,7 +7,6 @@ import '../helper.dart';
 import '../login/LoginPage.dart';
 
 class WizardFormBloc extends FormBloc<String, String> {
-
   final namaLengkap = TextFieldBloc(
     validators: [FieldBlocValidators.required],
   );
@@ -17,9 +16,7 @@ class WizardFormBloc extends FormBloc<String, String> {
   );
 
   final noTelp = TextFieldBloc(
-    validators: [
-      FieldBlocValidators.required
-    ],
+    validators: [FieldBlocValidators.required],
   );
 
   final email = TextFieldBloc(
@@ -48,8 +45,6 @@ class WizardFormBloc extends FormBloc<String, String> {
     validators: [FieldBlocValidators.required],
   );
 
-  
-
   final firstName = TextFieldBloc();
 
   final lastName = TextFieldBloc();
@@ -71,13 +66,12 @@ class WizardFormBloc extends FormBloc<String, String> {
   WizardFormBloc() {
     addFieldBlocs(
       step: 0,
-      fieldBlocs: [username,namaLengkap, email, password],
+      fieldBlocs: [username, namaLengkap, email, password],
     );
     addFieldBlocs(
       step: 1,
       fieldBlocs: [jenisKendaraan, noPlat, alamat],
     );
-    
   }
 
   bool _cekUsernameSama = true;
@@ -104,11 +98,10 @@ class WizardFormBloc extends FormBloc<String, String> {
         _cekUsernameSama = false;
       }
 
-
       if (_cekUsernameSama) {
-        username.addFieldError('Username sudah ada !');
+        username.addFieldError('No Telp sudah ada !');
         _cekUsernameSama = false;
-        emitFailure(failureResponse: 'Username Sudah ada!');
+        emitFailure(failureResponse: 'No Telp Sudah ada!');
       } else {
         emitSuccess();
       }
@@ -238,11 +231,10 @@ class _DaftarPageState extends State<DaftarPage> {
             keyboardType: TextInputType.emailAddress,
             enableOnlyWhenFormBlocCanSubmit: true,
             decoration: InputDecoration(
-              labelText: 'Username',
+              labelText: 'No Telp Aktif',
               prefixIcon: Icon(Icons.verified_user),
             ),
           ),
-          
           TextFieldBlocBuilder(
             textFieldBloc: wizardFormBloc.namaLengkap,
             keyboardType: TextInputType.text,
@@ -307,7 +299,6 @@ class _DaftarPageState extends State<DaftarPage> {
       ),
     );
   }
-  
 }
 
 class LoadingDialog extends StatelessWidget {

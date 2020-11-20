@@ -66,7 +66,8 @@ class _HomePageState extends State<HomePage> {
       print("INI LOKASI DRIVER: $cLoc");
       print("Lokasi lat : ${cLoc.latitude}");
       print("Lokasi Lng : ${cLoc.longitude}");
-      _updateDriver(cLoc.latitude.toString(), cLoc.longitude.toString(), cLoc.heading.toString());
+      _updateDriver(cLoc.latitude.toString(), cLoc.longitude.toString(),
+          cLoc.heading.toString());
       setState(() {
         currentLocation = cLoc;
       });

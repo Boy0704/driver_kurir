@@ -34,6 +34,8 @@ class _LoginPageState extends State<LoginPage> {
       "level": "driver",
       "token_fcm": tokenFcm
     });
+
+    print(response.body);
     final data = jsonDecode(response.body);
 
     print("hasil nya : $data");
@@ -289,9 +291,8 @@ class _LoginPageState extends State<LoginPage> {
                           1.5,
                           InkWell(
                             onTap: () {
-                              Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                      builder: (_) => DaftarPage()));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (_) => DaftarPage()));
                             },
                             child: Text(
                               "Daftar Sekarang",

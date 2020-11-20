@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:penjor_driver/lifecycle_manager.dart';
 import 'package:penjor_driver/splash_screen.dart';
 
 void main() {
@@ -8,14 +9,16 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Penjor Driver',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return LifeCycleManager(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Penjor Driver',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: SplashScreenPage(),
       ),
-      home: SplashScreenPage(),
     );
   }
 }

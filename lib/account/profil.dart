@@ -35,6 +35,15 @@ class _AccountState extends State<Account> {
 
   logOut() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
+    var idUser = preferences.getString("id_user");
+    var response =
+        await http.get(Secrets.BASE_URL + "set_status_driver?id_user=$idUser");
+    if (response.statusCode == 200) {
+      print('about http: ${response.body}.');
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
+    }
+
     setState(() {
       preferences.remove("level");
       preferences.remove("username");
