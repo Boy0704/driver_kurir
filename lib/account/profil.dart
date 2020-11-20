@@ -40,21 +40,20 @@ class _AccountState extends State<Account> {
         await http.get(Secrets.BASE_URL + "set_status_driver?id_user=$idUser");
     if (response.statusCode == 200) {
       print('about http: ${response.body}.');
+      setState(() {
+        preferences.remove("level");
+        preferences.remove("username");
+        preferences.remove("id_user");
+        preferences.remove("nama");
+        preferences.remove("password");
+        preferences.remove("email");
+      });
+      helper.alertLog("Anda Telah Keluar !");
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => LoginPage()));
     } else {
       print('Request failed with status: ${response.statusCode}.');
     }
-
-    setState(() {
-      preferences.remove("level");
-      preferences.remove("username");
-      preferences.remove("id_user");
-      preferences.remove("nama");
-      preferences.remove("password");
-      preferences.remove("email");
-    });
-    helper.alertLog("Anda Telah Keluar !");
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => LoginPage()));
   }
 
   _prosesUpdate() async {

@@ -228,7 +228,7 @@ class _DaftarPageState extends State<DaftarPage> {
         children: <Widget>[
           TextFieldBlocBuilder(
             textFieldBloc: wizardFormBloc.username,
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: TextInputType.phone,
             enableOnlyWhenFormBlocCanSubmit: true,
             decoration: InputDecoration(
               labelText: 'No Telp Aktif',
